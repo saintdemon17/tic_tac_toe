@@ -21,7 +21,7 @@ game.display()
 
 
 from gameparts import Board
-from gameparts.exceptions import FieldIndexError
+from gameparts.exceptions import CellOccupiedError, FieldIndexError
 
 
 def main():
@@ -29,9 +29,11 @@ def main():
     current_player = 'X'
     running = True
     game.display()
+
     while running:
 
         print(f'Ход делают {current_player}')
+
         while True:
             try:
                 row = int(input('Введите номер строки: '))
@@ -40,6 +42,8 @@ def main():
                 column = int(input('Введите номер столбца: '))
                 if column < 0 or column >= game.field_size:
                     raise FieldIndexError
+                if game.board[row][column] != ' ':
+                    raise CellOccupiedError
             except FieldIndexError:
                 print(
                     'Значение должно быть неотрицательным и меньше '
@@ -55,6 +59,7 @@ def main():
                 print(f'Возникла ошибка: {e}')
             else:
                 break
+            
     game.make_move(row, column, 'X')
     print('Ход сделан!')
     game.display()
