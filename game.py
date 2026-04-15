@@ -49,21 +49,25 @@ def main():
                     'Значение должно быть неотрицательным и меньше '
                     f'{game.field_size}.'
                 )
-                print('Пожалуйста, введите значения для строки и столбца заново.')
+                print('Введите значения для строки и столбца заново.')
+                continue
+            except CellOccupiedError:
+                print('Ячейка занята')
+                print('Введите другие координаты.')
                 continue
             except ValueError:
                 print('Буквы вводить нельзя. Только числа.')
-                print('Пожалуйста, введите значения для строки и столбца заново.')
+                print('Введите значения для строки и столбца заново.')
                 continue
             except Exception as e:
                 print(f'Возникла ошибка: {e}')
             else:
                 break
-            
-    game.make_move(row, column, 'X')
-    print('Ход сделан!')
-    game.display()
-    current_player = 'O' if current_player == 'X' else 'X'
+
+        game.make_move(row, column, current_player)
+        game.display()
+        current_player = 'O' if current_player == 'X' else 'X'
+
 
 if __name__ == '__main__':
-    main()
+    main() 
