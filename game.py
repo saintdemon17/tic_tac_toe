@@ -33,6 +33,8 @@ def main():
     if row < 0 or row >= game.field_size:
         raise FieldIndexError
     column = int(input('Введите номер столбца: '))
+    if column < 0 or column >= game.field_size:
+        raise FieldIndexError
     game.make_move(row, column, 'X')
     print('Ход сделан!')
     game.display()
