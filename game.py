@@ -1,28 +1,5 @@
-class Board:
-    def __init__(self):
-        self.board = [[' ' for _ in range(3)] for _ in range(3)]
-
-    def make_move(self, row, col, player):
-        self.board[row][col] = player
-
-    def display(self):
-        for row in self.board:
-            print('|'.join(row))
-            print('-' * 5)
-
-
-game = Board()
-game.display()
-game.make_move(1, 1, 'X')
-print('Ход сделан!')
-game.display()
-
-
-
-
 from gameparts import Board
 from gameparts.exceptions import CellOccupiedError, FieldIndexError
-
 
 def main():
     game = Board()
@@ -52,8 +29,8 @@ def main():
                 print('Введите значения для строки и столбца заново.')
                 continue
             except CellOccupiedError:
-                print('Ячейка занята')
-                print('Введите другие координаты.')
+                print('Ячейка занята.')
+                print('Пожалуйста, введите другие координаты.')
                 continue
             except ValueError:
                 print('Буквы вводить нельзя. Только числа.')
@@ -66,8 +43,15 @@ def main():
 
         game.make_move(row, column, current_player)
         game.display()
-        current_player = 'O' if current_player == 'X' else 'X'
+        # После каждого хода надо делать проверку на победу и на ничью.
+        if game.check_win(current_player):
+            print(f'Победили {current_player}!')
+            running = False
+        elif game.is_board_full():
+            print('Ничья!')
+            running = False
 
+        current_player = 'O' if current_player == 'X' else 'X'
 
 if __name__ == '__main__':
     main() 
