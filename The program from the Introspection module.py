@@ -2,7 +2,7 @@ from gameparts import Board
 
 game = Board()
 
-print('__str__' in dir(game))
+print(hasattr(game, '__str__'))
 
 # Выведется:
 # True
