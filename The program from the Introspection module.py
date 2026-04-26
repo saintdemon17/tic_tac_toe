@@ -1,10 +1,13 @@
 from gameparts import Board
 
 game = Board()
-print(type(game))
+
+print(isinstance(game, Board))
+print(isinstance(game, str))
 
 # Выведется:
-# <class 'gameparts.parts.Board'>
+# True
+# False 
 
 print(type(game) is Board)
 print(type(game) == Board)
