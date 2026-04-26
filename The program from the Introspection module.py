@@ -1,12 +1,11 @@
-# Из модуля inspect импортировать функцию isfunction.
-from inspect import isfunction
+# Из модуля inspect импортировать функцию ismethod.
+from inspect import ismethod
 
 from gameparts import Board
 
 game = Board()
 
 # display() - это функция?
-print(isfunction(game.display))
+print(ismethod(game.display))
 
-# Выведется:
-# False 
+#  Вывод: True
