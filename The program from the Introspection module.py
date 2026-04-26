@@ -1,11 +1,8 @@
-# Из модуля inspect импортировать функцию ismethod.
-from inspect import ismethod
-
 from gameparts import Board
 
 game = Board()
 
-# display() - это функция?
-print(ismethod(game.display))
+print(Board.__doc__)
 
-#  Вывод: True
+# Выведется:
+# Класс, который описывает игровое поле.
